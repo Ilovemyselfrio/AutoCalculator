@@ -27,11 +27,17 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public Long addNewStudent(StudentDto studentDto) {
         List<Student> studentList = studentRepository.findByEmail(studentDto.getEmail());
-//        判断
+//        判断是否重复
         if(!CollectionUtils.isEmpty(studentList)){
+//      存在相同邮箱的学生
             throw new IllegalStateException("email:" + studentDto.getEmail() + "has been taken");
         }
-        return null;
+//        把我们的Dto（Data transfer Object 是一个简单的Java Bean，用于在应用程序的不同层之间传输数据，
+//        通常用于接收来自客户端的数据） 对象转换为数据库的对象
+//        将一个 StudentDto 对象转换为 Student 实体，
+//        然后通过 studentRepository 的 .save() 方法将其保存到数据库中。这个过程通常发生在处理HTTP请求，如添加新学生信息到数据库时。
+        Student student = studentRepository.save(StudentConverter.convertStudent(studentDto));
+        return student.getId();
 
     }
 }

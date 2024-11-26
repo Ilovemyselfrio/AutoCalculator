@@ -11,4 +11,12 @@ public class StudentConverter {
         studentDto.setEmail(student.getEmail());
         return studentDto;
     }
+    public static Student convertStudent(StudentDto studentDto){
+        Student student = new Student();
+        student.setId(studentDto.getId());
+        student.setName(studentDto.getName());
+        student.setEmail(studentDto.getEmail());
+//        age studentDto里还没有设置 先不用管
+        return student;
+    }
 }
