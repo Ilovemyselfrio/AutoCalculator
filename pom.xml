@@ -31,6 +31,12 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+<!--        添加Lombok插件（plugin）依赖-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
         <!--        配置o jdbc依赖-->
         <dependency>
             <groupId>com.oracle</groupId>
