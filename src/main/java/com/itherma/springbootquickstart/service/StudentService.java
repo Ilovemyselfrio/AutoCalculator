@@ -8,5 +8,9 @@ public interface StudentService {
     StudentDto getStudentById(long id);
 
     Long addNewStudent(StudentDto studentDto);
+
+    void deleteStudentByID(long id);
+
+    StudentDto updateStudentById(long id, String name, String email);
 //    批量查询谁的数据 可能用到分页 ，也是在此处写方法
 }

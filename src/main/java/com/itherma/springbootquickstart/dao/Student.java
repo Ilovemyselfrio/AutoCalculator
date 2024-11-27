@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="student")
 public class Student {
-    @Id //表示它是一个自增的主键
+    @Id //表示它是一个主键
     //@GeneratedValue(strategy = IDENTITY) 表明是数据库自增，数据是数据库帮我们生成的
     private long id;
     @Column(name="name")//指定实体类属性与数据库表列的映射,表示实体类中的这个字段映射到数据库表中的name列

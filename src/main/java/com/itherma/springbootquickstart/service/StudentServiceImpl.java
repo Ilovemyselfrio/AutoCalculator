@@ -7,7 +7,9 @@ import com.itherma.springbootquickstart.dao.StudentRepository;
 import com.itherma.springbootquickstart.dto.StudentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -39,5 +41,31 @@ public class StudentServiceImpl implements StudentService{
         Student student = studentRepository.save(StudentConverter.convertStudent(studentDto));
         return student.getId();
 
+    }
+
+    @Override
+    public void deleteStudentByID(long id) {
+//        删除前判断 用户的 id 存不存在
+        studentRepository.findById(id).orElseThrow(()->new IllegalArgumentException("id:" + id + "doesn't exist!"));
+        studentRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public StudentDto updateStudentById(long id, String name, String email) {
+//        首先检查id是否存在
+        Student studentInDB = studentRepository.findById(id).orElseThrow(()->new IllegalArgumentException("id:" + id + "doesn't exist!"));
+//        再检查name是否为空，并且与数据库中对应的name不一致 我们才更新
+        if(StringUtils.hasLength(name) && !studentInDB.getName().equals(name)) {
+            studentInDB.setName(name);
+        }
+//        同理检查邮件
+        if(StringUtils.hasLength(email) && !studentInDB.getEmail().equals(email)) {
+            studentInDB.setEmail(email);
+        }
+//        最后保存更改 到数据库中
+        Student student = studentRepository.save(studentInDB);
+//        把更新完之后的 student返回给前端，故需转换！
+        return StudentConverter.convertStudent(student);
     }
 }
