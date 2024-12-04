@@ -1,6 +1,5 @@
 package com.itherma.springbootquickstart.service;
 
-import com.itherma.springbootquickstart.dao.Student;
 import com.itherma.springbootquickstart.dto.StudentDto;
 
 public interface StudentService {

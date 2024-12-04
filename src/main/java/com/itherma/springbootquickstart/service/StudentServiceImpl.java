@@ -1,6 +1,5 @@
 package com.itherma.springbootquickstart.service;
 
-import com.itherma.springbootquickstart.controller.StudentController;
 import com.itherma.springbootquickstart.converter.StudentConverter;
 import com.itherma.springbootquickstart.dao.Student;
 import com.itherma.springbootquickstart.dao.StudentRepository;

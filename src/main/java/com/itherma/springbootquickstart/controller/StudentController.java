@@ -1,7 +1,6 @@
 package com.itherma.springbootquickstart.controller;
 
 import com.itherma.springbootquickstart.Response;
-import com.itherma.springbootquickstart.dao.Student;
 import com.itherma.springbootquickstart.dto.StudentDto;
 import com.itherma.springbootquickstart.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
